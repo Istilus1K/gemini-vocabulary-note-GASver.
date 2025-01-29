@@ -57,7 +57,7 @@
 2. **シートの準備**:
     - **シートのコピーを作成**:以下のリンクからスプレッドシートをコピーして利用してください。
 
-        [こちらからスプレッドシートをコピー](https://docs.google.com/spreadsheets/d/あなたのスプレッドシートID/copy)
+        [こちらからスプレッドシートをコピー](https://docs.google.com/spreadsheets/d/1xfukXfdj2e0-rB118IQ5kY3WtPiBQ9F4WSI8qELA-zE/copy)
 
 
     - **setting シート**: APIキーと使用する言語を設定します。以下の項目を設定してください：
