@@ -44,7 +44,7 @@ function fetchWord() {
     + 以下の9つ情報を、それぞれ改行して返してください:\n
     + 1. 単語 (word),\n
     + 2. 発音 (pronunciation),\n
-    + 3. 意味 (meaning),\n
+    + 3. 意味 (meaning) (必ず日本語で書くこと),\n
     + 4. 例文1 (example1),\n
     + 5. 日本語訳1 (example1_translation),\n
     + 6. 例文2 (example2),\n
