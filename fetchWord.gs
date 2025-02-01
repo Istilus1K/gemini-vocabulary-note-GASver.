@@ -2,16 +2,22 @@ function onOpen() {
   const ui = SpreadsheetApp.getUi();
   ui.createMenu('Menue')  
     .addItem('Fetch Word', 'fetchWord')   
+    .addItem('Add New Sheet', 'addNewSheet') 
     .addToUi();
 }
 
 function fetchWord() {
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  const mainSheet = spreadsheet.getSheetByName('Main');
+  const mainSheet = spreadsheet.getActiveSheet();  
   const settingSheet = spreadsheet.getSheetByName('setting');
 
   if (!mainSheet || !settingSheet) {
     SpreadsheetApp.getUi().alert('指定されたシートが見つかりません。シート名を確認してください。');
+    return;
+  }
+
+  if (mainSheet.getName() === 'setting') {
+    SpreadsheetApp.getUi().alert('このシートでは実行できません。別のシートを開いてから実行してください。');
     return;
   }
 
@@ -50,7 +56,7 @@ function fetchWord() {
     + - 情報が不足しています（9行で返してください）。\n\n
     + 例 (インドネシア語のhatiという単語):\n
     + hati\n
-    + /ˈɑːti/\n
+    + ˈhati\n
     + 心\n
     + Hati saya senang\n
     + 私の心は喜んでいる\n
@@ -112,4 +118,33 @@ function fetchWord() {
   } catch (error) {
     Logger.log("エラー: " + error.toString());
   }
+}
+
+function addNewSheet() {
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  const sheets = spreadsheet.getSheets();
+  
+  const sourceSheet = sheets.find(sheet => sheet.getName() !== 'setting');
+  
+  if (!sourceSheet) {
+    SpreadsheetApp.getUi().alert('コピー元となるシートが見つかりません。');
+    return;
+  }
+
+  const newSheet = sourceSheet.copyTo(spreadsheet);
+  newSheet.setName('sheet ' + sheets.length); 
+
+  const lastRow = newSheet.getLastRow();
+  if (lastRow > 1) {
+    newSheet.getRange(2, 1, lastRow - 1, newSheet.getLastColumn()).clearContent();
+  }
+
+  const settingSheet = spreadsheet.getSheetByName('setting');
+  if (settingSheet) {
+    spreadsheet.setActiveSheet(settingSheet);
+    spreadsheet.moveActiveSheet(sheets.length+1); 
+  }
+  spreadsheet.setActiveSheet(newSheet);
+  SpreadsheetApp.flush();
+  SpreadsheetApp.getUi().alert('新しいシートが追加されました。');
 }

@@ -2,7 +2,7 @@
 
 ![Example Image](asset/1.png)
 
-この[スプレッドシート](https://docs.google.com/spreadsheets/d/1xfukXfdj2e0-rB118IQ5kY3WtPiBQ9F4WSI8qELA-zE/copy)は、語学学習者が知らない単語を効率的に検索・記録するためのツールです。以前作成したLaTeXを利用したバージョンよりも導入の負担を軽減する目的で作成されています。
+この[スプレッドシート](https://docs.google.com/spreadsheets/d/1H6GYr7bxicvGNF5OTyrranghVtKn2Xm2lNbuyF9b5VQ/copy)は、語学学習者が知らない単語を効率的に検索・記録するためのツールです。以前作成したLaTeXを利用したバージョンよりも導入の負担を軽減する目的で作成されています。
 
 任意の単語について、発音、意味、例文の情報をAI (Gemini)により生成し、それを記録します。
 
@@ -13,8 +13,8 @@
 1. [経緯](#経緯)
 2. [機能概要](#機能概要)
 3. [セットアップ手順](#セットアップ手順)
-4. [使用方法](#使用方法)
-5. [エラー処理](#エラー処理)
+4. [基本機能](#基本機能)
+5. [シートの追加](#シートの追加)
 
 
 
@@ -38,9 +38,9 @@
 - **情報の表示**: 取得した情報は以下の内容で表示されます。
   1. 発音
   2. 意味
-  3. 例文1(日本語訳1)
-  4. 例文2(日本語訳2)
-  5. 例文3(日本語訳3)
+  3. 例文1 (日本語訳1)
+  4. 例文2 (日本語訳2)
+  5. 例文3 (日本語訳3)
 
     ![Example Image](asset/5.png)
 
@@ -57,12 +57,12 @@
 2. **シートの準備**:
     - **シートのコピーを作成**:以下のリンクからスプレッドシートをコピーして利用してください。
 
-        [こちらからスプレッドシートをコピー](https://docs.google.com/spreadsheets/d/あなたのスプレッドシートID/copy)
+        [こちらからスプレッドシートをコピー](https://docs.google.com/spreadsheets/d/1H6GYr7bxicvGNF5OTyrranghVtKn2Xm2lNbuyF9b5VQ/copy)
 
 
     - **setting シート**: APIキーと使用する言語を設定します。以下の項目を設定してください：
         - `B1`: 使用する言語（例：日本語、英語）
-        - `B2`: Google Cloud APIキー
+        - `B2`: Gemini APIキー
 
              ![Example Image](asset/4.png)
 
@@ -72,10 +72,10 @@
 
         ![Example Image](asset/2.png)
 
-## 使用方法
+## 基本機能
 
 1. **単語の入力**:
-   - **Main シート**の列Aに単語を入力します。入力後、`Menue` メニューから「Fetch Word」を選択します。
+   - setting以外の任意の**シート**の列Aに単語を入力します。入力後、`Menue` メニューから「Fetch Word」を選択します。
 
        ![Example Image](asset/6.png)
 
@@ -97,3 +97,15 @@
    - キャンセルした場合、内容はクリアされます。
 
        ![Example Image](asset/8.png)
+
+## シートの追加
+
+1. **メニュー操作**:
+   - `Menue` メニューから「Add New Sheet」を選択します。
+
+       ![Example Image](asset/10.png)
+   - 処理が終了すると、新しいシートが追加されます。
+       ![Example Image](asset/11.png)
+2. **シート名の変更**:
+   - シートの名前をお好みに変更してください
+       ![Example Image](asset/12.png)
