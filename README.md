@@ -1,6 +1,6 @@
 # README
 
-![Example Image](asset/1.png)
+![Example Image](asset/gemini_trim.gif)
 
 この[スプレッドシート](https://docs.google.com/spreadsheets/d/1H6GYr7bxicvGNF5OTyrranghVtKn2Xm2lNbuyF9b5VQ/copy)は、語学学習者が知らない単語を効率的に検索・記録するためのツールです。以前作成したLaTeXを利用したバージョンよりも導入の負担を軽減する目的で作成されています。
 
