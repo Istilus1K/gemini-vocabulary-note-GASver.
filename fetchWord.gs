@@ -40,30 +40,34 @@ function fetchWord() {
   const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`;
   const headers = { 'Content-Type': 'application/json' };
 
-  const prompt = `${language}の${word}という単語またはフレーズを辞書的に解説してください。\n
-    + 以下の9つ情報を、それぞれ改行して返してください:\n
-    + 1. 単語 (word),\n
-    + 2. 発音 (pronunciation),\n
-    + 3. 意味 (meaning) (必ず日本語で書くこと),\n
-    + 4. 例文1 (example1),\n
-    + 5. 日本語訳1 (example1_translation),\n
-    + 6. 例文2 (example2),\n
-    + 7. 日本語訳2 (example2_translation),\n
-    + 8. 例文3 (example3),\n
-    + 9. 日本語訳3 (example3_translation)。\n\n
-    + もし情報が見つからない場合や不完全な場合は、次のように回答してください：\n
-    + - 結果が見つかりませんでした。\n
-    + - 情報が不足しています（9行で返してください）。\n\n
-    + 例 (インドネシア語のhatiという単語):\n
-    + hati\n
-    + ˈhati\n
-    + 心\n
-    + Hati saya senang\n
-    + 私の心は喜んでいる\n
-    + Dia adalah orang yang baik hati\n
-    + 彼/彼女は心優しい人です\n
-    + Hati-hati!\n
-    + 気を付けて!\n`;
+  const prompt = `${language} の「${word}」という単語またはフレーズを辞書的に解説してください。\n\n` +
+    "以下の9つの情報を、指定された順序で、改行区切りで返してください。\n\n" +
+    "1. 単語 (word)\n" +
+    "2. 発音 (pronunciation)（分かる場合は IPA で、分からない場合は「不明」と記載）\n" +
+    "3. 意味 (meaning)（必ず日本語で書く）\n" +
+    "4. 例文1 (example1)\n" +
+    "5. 日本語訳1 (example1_translation)\n" +
+    "6. 例文2 (example2)\n" +
+    "7. 日本語訳2 (example2_translation)\n" +
+    "8. 例文3 (example3)\n" +
+    "9. 日本語訳3 (example3_translation)\n\n" +
+    "### 追加ルール\n" +
+    "- すべての項目を改行で区切ること。\n" +
+    "- 例文は自然な文脈で使用されるものにすること。\n" +
+    "- 情報が不足している場合は、「情報が不足しています」と記載し、9行で出力すること。\n" +
+    "- 結果が見つからない場合は「結果が見つかりませんでした。」と出力すること。\n\n" +
+    "### 出力例（インドネシア語「hati」の場合）\n\n" +
+    "```\n" +
+    "hati\n" +
+    "ˈhati\n" +
+    "心\n" +
+    "Hati saya senang\n" +
+    "私の心は喜んでいる\n" +
+    "Dia adalah orang yang baik hati\n" +
+    "彼/彼女は心優しい人です\n" +
+    "Hati-hati!\n" +
+    "気を付けて!\n" +
+    "```";
 
   const payload = {
     'contents': [{ 'parts': [{ 'text': prompt }] }]
