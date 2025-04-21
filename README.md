@@ -1,12 +1,10 @@
 # README
 
-![Example Image](asset/gemini_trim.gif)
+![Example Image](asset/gemini240422.gif)
 
-この[スプレッドシート](https://docs.google.com/spreadsheets/d/1H6GYr7bxicvGNF5OTyrranghVtKn2Xm2lNbuyF9b5VQ/copy)は、語学学習者が知らない単語を効率的に検索・記録するためのツールです。以前作成したLaTeXを利用したバージョンよりも導入の負担を軽減する目的で作成されています。
+この[スプレッドシート](https://docs.google.com/spreadsheets/d/1c0rEzWjVzPl2iM8fQuhsog9V-ZLPWn0aZbqlG_HQDmk/copy)は、語学学習者が知らない単語を効率的に検索・記録するためのツールです。以前作成したLaTeXを利用したバージョンよりも導入の負担を軽減する目的で作成されています。
 
 任意の単語について、発音、意味、例文の情報をAI (Gemini)により生成し、それを記録します。
-
-
 
 ## 目次
 
@@ -14,7 +12,8 @@
 2. [機能概要](#機能概要)
 3. [セットアップ手順](#セットアップ手順)
 4. [基本機能](#基本機能)
-5. [シートの追加](#シートの追加)
+5. [ソート機能](#ソート機能)
+6. [シートの追加](#シートの追加)
 
 
 
@@ -46,66 +45,96 @@
 
 ## セットアップ手順
 
-1. **APIキーの取得**:
+1. **APIキーの取得**:  
    このツールは、Google Cloud の Generative Language API を使用します。APIキーを取得して、以下の手順で設定します。
 
    - [Google AI Studio](https://aistudio.google.com/apikey?hl=ja)にアクセス。
    - APIとサービスを有効にし、APIキーを作成します。
 
-        ![Example Image](asset/3.png)
+    ![Example Image](asset/3.png)
 
-2. **シートの準備**:
-    - **シートのコピーを作成**:以下のリンクからスプレッドシートをコピーして利用してください。
+2. **シートの準備**:  
+    **シートのコピーを作成**:以下のリンクからスプレッドシートをコピーして利用してください。
 
-        [こちらからスプレッドシートをコピー](https://docs.google.com/spreadsheets/d/1H6GYr7bxicvGNF5OTyrranghVtKn2Xm2lNbuyF9b5VQ/copy)
+    [こちらからスプレッドシートをコピー](https://docs.google.com/spreadsheets/d/1c0rEzWjVzPl2iM8fQuhsog9V-ZLPWn0aZbqlG_HQDmk/copy)
 
 
-    - **setting シート**: APIキーと使用する言語を設定します。以下の項目を設定してください：
+    - **setting シート**:   
+    **APIキー**と**使用する言語**を設定します。以下の項目を設定してください：
         - `B1`: 使用する言語（例：日本語、英語）
         - `B2`: Gemini APIキー
 
-             ![Example Image](asset/4.png)
+        ![Example Image](asset/4.png)
 
-    - **GASの承認手続き**:
+    - **GASの承認手続き**:  
     スクリプト実行時、GASが必要な権限の承認ダイアログが表示されます。  
     必要な権限確認し、「承認」ボタンを押します。
 
-        ![Example Image](asset/2.png)
+    ![Example Image](asset/2.png)
 
 ## 基本機能
 
-1. **単語の入力**:
-   - setting以外の任意の**シート**の列Aに単語を入力します。入力後、`Menue` メニューから「Fetch Word」を選択します。
-
-       ![Example Image](asset/6.png)
+1. **単語の入力**:  
+setting以外の任意の**シート**の最終行の列Aに単語を入力します。入力後、`Menue` メニューから「Fetch Word」を選択します。
+    ![Example Image](asset/6.png)
 
    
-2. **解説の取得**:
-   - 選択した単語について、APIが辞書的な解説を取得し、次の情報を列BからDに表示します：
-     - 発音、意味、例文1〜3、および日本語訳。
+2. **解説の取得**:  
+選択した単語について、APIが辞書的な解説を取得し、次の情報を列BからDに表示します：  
+    発音、意味、例文1〜3、および日本語訳。
    
-3. **内容の確認と確定**:
-   - 解説が表示された後、ポップアップが表示されます。内容を確定するか、キャンセルするかを選択できます。
+3. **内容の確認と確定**:  
+解説が表示された後、ポップアップが表示されます。内容を確定するか、キャンセルするかを選択できます。
+    ![Example Image](asset/7.png)
 
-       ![Example Image](asset/7.png)
+4. **内容の変更**:  
+確定した内容は、列B〜Dに反映されます。  
+同時に、新しく空欄の行が追加されます。
+    ![Example Image](asset/5.png)
 
-4. **内容の変更**:
-   - 確定した内容は、列B〜Dに反映されます。
+    キャンセルした場合、内容はクリアされます。
+    ![Example Image](asset/8.png)
 
-       ![Example Image](asset/5.png)
+## ソート機能
+3種類の方法（昇順, 降順, シャッフル）で単語をソートします。ソートの方法は「📊 Sort」メニューより選択できます
+1. **昇順ソート**:  
+列Aの番号を基準に、6行ブロックを昇順にソートします。
+![Example Image](asset/14.png)
 
-   - キャンセルした場合、内容はクリアされます。
+2. **降順ソート**:  
+列Aの番号を基準に、6行ブロックを降順にソートします。
+![Example Image](asset/15.png)
 
-       ![Example Image](asset/8.png)
+3. **シャッフル**:  
+ランダムにシャッフルして表示します。
+![Example Image](asset/16.png)
+
+4. **チェック✅した単語を除外してソート**:  
+チェック✅なしの単語を優先的に上部にまとめ、ソートを行うことができます。  
+チェック✅単語の除外のON/OFFは「📊 Sort」メニューから変更できます。
+    ![Example Image](asset/13.png)
+
+    - チェック✅除外 + 昇順  
+✅無し単語のみで昇順 → ✅あり単語のみで昇順
+![Example Image](asset/17.png)
+
+    - チェック✅除外 + 降順  
+✅無し単語のみで降順 → ✅あり単語のみで降順
+![Example Image](asset/18.png)
+
+    - チェック✅除外 + シャッフル  
+✅無し単語のみでシャッフル → ✅あり単語のみでシャッフル
+![Example Image](asset/19.png)
 
 ## シートの追加
 
-1. **メニュー操作**:
-   - `Menue` メニューから「Add New Sheet」を選択します。
+1. **メニュー操作**:  
+`Menue` メニューから「Add New Sheet」を選択します。
+    ![Example Image](asset/10.png)
 
-       ![Example Image](asset/10.png)
-   - 処理が終了すると、新しいシートが追加されます。
-       ![Example Image](asset/11.png)
-2. **シート名の変更**:
-   - シートの名前をお好みに変更してください
-       ![Example Image](asset/12.png)
+    処理が終了すると、新しいシートが追加されます。
+    ![Example Image](asset/11.png)
+
+2. **シート名の変更**:  
+シートの名前をお好みに変更してください
+    ![Example Image](asset/12.png)
