@@ -25,7 +25,7 @@ function getConsiderTrueFalse() {
 }
 
 function sortLargeRowsByAColumn(isAscending, considerTrueFalse) {
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("sheet 1");
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   const blockSize = 6;
   const startRow = 2;
   const numCols = 7;
@@ -96,7 +96,7 @@ function sortLargeRowsByAColumn(isAscending, considerTrueFalse) {
 }
 
 function shuffleLargeRows() {
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("sheet 1");
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   const blockSize = 6;
   const startRow = 2;
   const numCols = sheet.getLastColumn();
